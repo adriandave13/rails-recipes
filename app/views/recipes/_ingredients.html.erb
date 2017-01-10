@@ -1,0 +1,18 @@
+<h3>Ingredients</h3>
+
+<% @recipe.recipe_ingredients.each_with_index do |recipe_ingredient, i| %>
+  <p>
+    <%= fields_for :recipe_ingredients, recipe_ingredient do |fq| %>
+
+      <%= fq.label :ingredient %>
+      <%= text_field_tag "recipe[recipe_ingredient][#{i}][ingredient_name]", recipe_ingredient.ingredient.name %>
+
+      <%= fq.label :quantity %>
+      <%= fq.text_field :quantity, :name => "recipe[recipe_ingredient][#{i}][quantity]" %>
+
+      <%= fq.label :unit %>
+      <%= fq.text_field :unit, :name => "recipe[recipe_ingredient][#{i}][unit]" %>
+
+    <% end %>
+  </p>
+<% end %>
