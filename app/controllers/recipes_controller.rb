@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    puts @recipe
   end
 
   def edit
