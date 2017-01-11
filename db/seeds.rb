@@ -6,9 +6,9 @@
 #   cities = City.create( name: 'Chicago', name: 'Copenhagen')
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-tacos = Recipe.create(name: 'Tacos', instructions: 'Tacos are a delicious treat')
-pizza = Recipe.create(name: 'Pizza', instructions: 'Pizza is a delicious treat')
-meatballs = Recipe.create(name: 'Meatballs', instructions: 'Meatballs are a delicious treat')
+tacos = Recipe.create(user_id: 1, name: 'Tacos', instructions: 'Tacos are a delicious treat')
+pizza = Recipe.create(user_id: 1, name: 'Pizza', instructions: 'Pizza is a delicious treat')
+meatballs = Recipe.create(user_id: 1, name: 'Meatballs', instructions: 'Meatballs are a delicious treat')
 
 beef = Ingredient.create(name: 'beef')
 shells = Ingredient.create(name: 'shells')
@@ -29,3 +29,16 @@ pizza.recipe_ingredients.create(ingredient: dough, quantity: 1, unit: 'pound')
 
 meatballs.recipe_ingredients.create(ingredient: beef, quantity: 1, unit: 'pound')
 meatballs.recipe_ingredients.create(ingredient: sauce, quantity: 1, unit: 'jar')
+
+tacos.comments.create(user_id: 1, body: "This is comment 1")
+tacos.comments.create(user_id: 1, body: "This is comment 2")
+tacos.comments.create(user_id: 1, body: "This is comment 3")
+tacos.comments.create(user_id: 1, body: "This is comment 4")
+tacos.comments.create(user_id: 1, body: "This is comment 5")
+
+pizza.comments.create(user_id: 1, body: "This is comment 1")
+pizza.comments.create(user_id: 1, body: "This is comment 2")
+pizza.comments.create(user_id: 1, body: "This is comment 3")
+
+meatballs.comments.create(user_id: 1, body: "This is comment 1")
+meatballs.comments.create(user_id: 1, body: "This is comment 2")
