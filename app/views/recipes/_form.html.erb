@@ -3,10 +3,6 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
-  <p>
-    <%= f.label :instructions %><br />
-    <%= f.text_area :instructions, :rows => 4, :cols => 50 %>
-  </p>
 
   <p>
     <%= f.fields_for :recipe_ingredients do |ingredients_form| %>
@@ -15,6 +11,15 @@
   </p>
 
   <p>
-    <%= f.submit :Submit, class: 'btn btn-primary' %>
+    <%= f.submit 'Add ingredient', :name => "add_ingredient", class: 'btn btn-outline-success btn-sm' %>
+  </p>
+
+  <p>
+    <%= f.label :instructions %><br />
+    <%= f.text_area :instructions, :rows => 4, :cols => 50 %>
+  </p>
+
+  <p>
+    <%= f.submit "Save Recipe", class: 'btn btn-primary' %>
   </p>
 <% end %>

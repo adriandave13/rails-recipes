@@ -14,29 +14,38 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    puts "Ingredients: " + @recipe.recipe_ingredients.to_s
+    if @recipe.recipe_ingredients.count == 0
+      @recipe.recipe_ingredients.build
+    end
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if @recipe.save
+    if params[:add_ingredient]
+      @recipe.recipe_ingredients.build
+    elsif @recipe.save
       flash[:notice] = "Recipe was successfully created."
-      redirect_to @recipe
+      redirect_to @recipe and return
     else
       flash[:alert] = "Error creating new recipe."
-      render :action => 'new'
     end
+    render :action => 'new'
   end
 
   def update
-    @recipe = Recipe.update(recipe_params)
-    if @recipe.save
+    @recipe.update(recipe_params)
+    if params[:add_ingredient]
+      @recipe.recipe_ingredients.build
+    elsif @recipe.save
       flash[:notice] = "Recipe was successfully updated."
-      redirect_to @recipe
+      redirect_to @recipe and return
     else
       flash[:alert] = "Error updating recipe."
-      render :action => 'edit'
     end
+    flash.each do |key, value|
+      puts 'Flash: ' + key + ": " + value
+    end
+    render :action => 'edit'
   end
 
   def destroy
@@ -55,16 +64,9 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      # Start
       puts params
-      puts "Array: " + params[:recipe][:recipe_ingredient].to_s
-      recipe_ingredients = params[:recipe][:recipe_ingredient]
-      recipe_ingredients.each do |key, array|
-        puts "#{key}: "
-        puts array.to_s
-      end
-      # End
-      params.require(:recipe).permit(:name, :instructions, :recipe_ingredient[])
+      puts "Recipe Ingredients: " + params[:recipe][:recipe_ingredients].to_s
+      params.require(:recipe).permit(:name, :instructions, :recipe_ingredients => [:id, :ingredient_name, :quantity, :unit, :delete])
     end
 
 end
