@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :recipe_ingredients
-  resources :ingredients
   resources :recipes
+  resources :ingredients
+  resources :recipe_ingredients
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root 'recipes#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
