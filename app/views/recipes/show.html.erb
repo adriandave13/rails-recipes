@@ -1,12 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @recipe.name %></h1>
+
+<h3>Ingredients</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipe.recipe_ingredients.each_with_index do |recipe_ingredient, i| %>
+      <tr>
+        <td><%= recipe_ingredient.ingredient_name %></td>
+        <td><%= recipe_ingredient.quantity %></td>
+        <td><%= recipe_ingredient.unit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
-</p>
-
-<p>
-  <strong>Instructions:</strong>
+  <h3>Instructions</h3><br />
   <%= @recipe.instructions %>
 </p>
 

@@ -2,8 +2,13 @@ class RecipeIngredient < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :ingredient
 
-  validates_presence_of :recipe_id
-  validates_presence_of :ingredient_id
+  validate :has_at_least_one_ingredient
+
+  def has_at_least_one_ingredient
+    if self.try(:ingredient).try(:name).blank?
+      errors.add(:ingredient, "Ingredient must have a name")
+    end
+  end
 
   validates_presence_of :quantity
   validates_presence_of :unit
@@ -13,7 +18,7 @@ class RecipeIngredient < ActiveRecord::Base
   end
 
   def ingredient_name=(name)
-    self.ingredient = Ingredient.find_or_create_by(name: name)
+   self.ingredient = Ingredient.find_or_create_by(name: name)
   end
 
 end

@@ -24,10 +24,10 @@ class RecipesController < ApplicationController
     if params[:add_ingredient]
       @recipe.recipe_ingredients.build
     elsif @recipe.save
-      flash[:notice] = "Recipe was successfully created."
+      flash[:success] = "Recipe was successfully created."
       redirect_to @recipe and return
     else
-      flash[:alert] = "Error creating new recipe."
+      flash[:error] = "Error creating new recipe."
     end
     render :action => 'new'
   end
@@ -37,10 +37,10 @@ class RecipesController < ApplicationController
     if params[:add_ingredient]
       @recipe.recipe_ingredients.build
     elsif @recipe.save
-      flash[:notice] = "Recipe was successfully updated."
+      flash[:success] = "Recipe was successfully updated."
       redirect_to @recipe and return
     else
-      flash[:alert] = "Error updating recipe."
+      flash[:error] = "Error updating recipe."
     end
     flash.each do |key, value|
       puts 'Flash: ' + key + ": " + value
@@ -50,10 +50,10 @@ class RecipesController < ApplicationController
 
   def destroy
     if @recipe.destroy
-      flash[:notice] = "Recipe was successfully deleted."
-      redirect_to posts_path
+      flash[:success] = "Recipe was successfully deleted."
+      redirect_to recipes_path
     else
-      flash[:alert] = "Error deleting recipe."
+      flash[:error] = "Error deleting recipe."
     end
   end
 
