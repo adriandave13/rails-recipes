@@ -28,5 +28,15 @@
   <%= @recipe.instructions %>
 </p>
 
+<p>
+  <h3>Comments</h3>
+  <%= render @recipe.comments %>
+</p>
+
+<p>
+  <h3>Add a Comment:</h3>
+  <%= render "comments/form" %>
+</p>
+
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :recipes
+  resources :recipes do
+    resources :comments
+  end
   resources :ingredients
   resources :recipe_ingredients
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
