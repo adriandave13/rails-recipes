@@ -1,15 +1,38 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [:show]
+
+  def show
+    @recipe = Recipe.find(params[:recipe_id])
+  end
+
+  def new
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = @recipe.comments.new
+  end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    current_user.comments << @recipe.comments.create(comment_params)
-    redirect_to recipe_path(@recipe)
+    @comment = Comment.new(comment_params)
+    @comment.recipe = @recipe
+    @comment.user = current_user
+    if @comment.save
+      flash[:success] = "Comment was successfully created."
+      redirect_to recipe_comment_path(@recipe, @comment)
+    else
+      flash[:error] = "Error creating new comment."
+      redirect_to new_recipe_comment(@recipe)
+    end
   end
 
   private
 
-    def comment_params
-      params.require(:comment).permit(:body)
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def comment_params
+    puts params
+    params.require(:comment).permit(:body)
+  end
 
 end
