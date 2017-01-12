@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index]
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -14,13 +15,18 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    if @recipe.recipe_ingredients.count == 0
-      @recipe.recipe_ingredients.build
+    if @recipe.user == current_user
+      if @recipe.recipe_ingredients.count == 0
+        @recipe.recipe_ingredients.build
+      end
+    else
+      redirect_to recipes_path
     end
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
     if params[:add_ingredient]
       @recipe.recipe_ingredients.build
     elsif @recipe.save
@@ -49,11 +55,15 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    if @recipe.destroy
-      flash[:success] = "Recipe was successfully deleted."
-      redirect_to recipes_path
+    if @recipe.user == current_user
+      if @recipe.destroy
+        flash[:success] = "Recipe was successfully deleted."
+        redirect_to recipes_path
+      else
+        flash[:error] = "Error deleting recipe."
+      end
     else
-      flash[:error] = "Error deleting recipe."
+      redirect_to recipes_path
     end
   end
 
