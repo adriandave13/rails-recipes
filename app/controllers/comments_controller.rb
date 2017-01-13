@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   before_action :set_comment, only: [:show]
 
   def show
@@ -20,7 +21,7 @@ class CommentsController < ApplicationController
       redirect_to recipe_comment_path(@recipe, @comment)
     else
       flash[:error] = "Error creating new comment."
-      redirect_to new_recipe_comment(@recipe)
+      render :new
     end
   end
 

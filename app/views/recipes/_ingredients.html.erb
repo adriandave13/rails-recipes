@@ -16,7 +16,7 @@
       <%= fields_for :recipe_ingredients, recipe_ingredient do |fq| %>
         <tr>
           <td><%= hidden_field_tag "recipe[recipe_ingredients][][id]", recipe_ingredient.id %></td>
-          <td><%= text_field_tag "recipe[recipe_ingredients][][ingredient_name]", recipe_ingredient.ingredient_name %></td>
+          <td><%= fq.text_field :ingredient_name, :name => "recipe[recipe_ingredients][][ingredient_name]" %></td>
           <td><%= fq.text_field :quantity, :name => "recipe[recipe_ingredients][][quantity]" %></td>
           <td><%= fq.text_field :unit, :name => "recipe[recipe_ingredients][][unit]" %></td>
           <td><%= check_box_tag "recipe[recipe_ingredients][][delete]" %></td>

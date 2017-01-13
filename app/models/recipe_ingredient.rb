@@ -10,6 +10,7 @@ class RecipeIngredient < ActiveRecord::Base
     end
   end
 
+  validates_presence_of :ingredient_name
   validates_presence_of :quantity
   validates_presence_of :unit
 

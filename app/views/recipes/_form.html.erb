@@ -1,4 +1,13 @@
 <%= form_for @recipe do |f| %>
+
+  <% if @recipe.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <span><%= msg %></span><br />
+      <% end %>
+    </div>
+  <% end %>
+
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>

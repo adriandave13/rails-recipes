@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
     else
       flash[:error] = "Error creating new recipe."
     end
-    render :action => 'new'
+    render :new
   end
 
   def update
