@@ -6,9 +6,9 @@
 #   cities = City.create( name: 'Chicago', name: 'Copenhagen')
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-tacos = Recipe.create(user_id: 1, name: 'Tacos', instructions: 'Tacos are a delicious treat')
-pizza = Recipe.create(user_id: 1, name: 'Pizza', instructions: 'Pizza is a delicious treat')
-meatballs = Recipe.create(user_id: 1, name: 'Meatballs', instructions: 'Meatballs are a delicious treat')
+tacos = Recipe.create(user_id: 1, name: 'Tacos', instructions: 'Tacos are a delicious treat', duration: 30)
+pizza = Recipe.create(user_id: 1, name: 'Pizza', instructions: 'Pizza is a delicious treat', duration: 60)
+meatballs = Recipe.create(user_id: 1, name: 'Meatballs', instructions: 'Meatballs are a delicious treat', duration: 30)
 
 beef = Ingredient.create(name: 'beef')
 shells = Ingredient.create(name: 'shells')

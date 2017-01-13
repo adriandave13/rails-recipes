@@ -39,5 +39,5 @@
 <p>
   <h3>Comments</h3><br />
   <%= button_to "Add comment", new_recipe_comment_path(@recipe), method: :get, class: 'btn btn-outline-success btn-sm' %><br />
-  <%= render @recipe.comments %>
+  <%= render @comments %>
 </p>

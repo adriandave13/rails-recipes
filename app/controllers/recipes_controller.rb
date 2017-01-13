@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @comments = @recipe.comments.order(created_at: :desc)
   end
 
   def new
@@ -48,9 +49,6 @@ class RecipesController < ApplicationController
     else
       flash[:error] = "Error updating recipe."
     end
-    flash.each do |key, value|
-      puts 'Flash: ' + key + ": " + value
-    end
     render :action => 'edit'
   end
 
@@ -74,8 +72,6 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      puts params
-      puts "Recipe Ingredients: " + params[:recipe][:recipe_ingredients].to_s
       params.require(:recipe).permit(:name, :instructions, :recipe_ingredients => [:id, :ingredient_name, :quantity, :unit, :delete])
     end
 

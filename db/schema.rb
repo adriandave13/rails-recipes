@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111234509) do
+ActiveRecord::Schema.define(version: 20170113062417) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "recipe_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170111234509) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "user_id"
+    t.integer  "duration"
   end
 
   create_table "users", force: :cascade do |t|

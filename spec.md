@@ -31,7 +31,9 @@ Specs:
 
   Validations exist on Recipes, RecipeIngredients, Comments, Ingredients
 
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+
+  quick_meals scope for recipes with duration <= 30
 
 - [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
 
@@ -50,7 +52,7 @@ Specs:
 
   New Recipe Comment
 
-- [] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
 - [x] The application is pretty DRY
